@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/action_bar_color"
+                android:minHeight="?attr/actionBarSize" />
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:paddingLeft="@dimen/list_item_padding_left"
+                android:textSize="25sp"
+                android:textColor="#ff0099cc"
+                android:text="Contact Us"
+                android:layout_marginTop="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/WizardFormLabel"
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
+                    android:text="Email:"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView android:id="@+id/email_id"
+                    android:layout_width="0dp"
+                    android:layout_weight="53"
+                    android:layout_height="wrap_content"
+                    android:text="info@holistree.in"
+                    android:layout_gravity="center_vertical"
+                    android:autoLink="email"/>
+
+                <ImageView
+                    android:id="@+id/icon_email"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/email"
+                    android:scaleType="fitXY"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/WizardFormLabel"
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
+                    android:text="Website:"
+                    android:layout_gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/website"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="60"
+                    android:clickable="true"
+                    android:text="http://www.holistree.in"
+                    android:textColor="@color/com_facebook_button_send_background_color_pressed" />
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="fitXY"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    style="@style/WizardFormLabel"
+                    android:layout_width="0dp"
+                    android:layout_weight="30"
+                    android:text="Blog:"
+                    android:layout_gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/blog"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="60"
+                    android:text="http://www.holistree.in/blog"
+                    android:textColor="@color/com_facebook_button_send_background_color_pressed" />
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:scaleType="fitXY"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:paddingLeft="@dimen/list_item_padding_left"
+                android:textSize="25sp"
+                android:textColor="#ff0099cc"
+                android:text="Follow Us At"
+                android:layout_marginTop="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="25"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/icon_fa"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/fa"
+                        android:scaleType="fitXY"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="25"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/icon_tw"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/tw"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="25"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/icon_ig"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ig"
+                        android:scaleType="fitXY"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="25"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/icon_gp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/gp"
+                        android:scaleType="fitXY"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
