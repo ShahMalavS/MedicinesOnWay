@@ -61,6 +61,7 @@ public class AddPrescriptionActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Add Prescription");
 
         String storeName = getIntent().getExtras().getString("storeName");
         String storeId = getIntent().getExtras().getString("storeId");
@@ -71,7 +72,9 @@ public class AddPrescriptionActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(AddPrescriptionActivity.this, OrderConfirmedActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 

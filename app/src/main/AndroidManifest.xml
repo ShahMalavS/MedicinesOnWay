@@ -35,6 +35,14 @@
 
         <activity android:name=".activity.AddPrescriptionActivity"/>
 
+        <activity android:name=".activity.AddReminderActivity"/>
+
+        <activity android:name=".activity.CreateEditActivity"/>
+
+        <activity android:name=".activity.ViewActivity"/>
+
+        <activity android:name=".activity.SnoozeDialogActivity"/>
+
 
 
 
@@ -57,8 +65,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>

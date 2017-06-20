@@ -389,37 +389,37 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
         switch(position){
             case 0:
                 i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
+                startActivity(i);
                 break;
             case 1:
                 i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
+                startActivity(i);
                 break;
             case 2:
                 i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
+                startActivity(i);
                 break;
             case 3:
-                i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
+                i = new Intent(CustomerDashBoardActivity.this, AddReminderActivity.class);
+                startActivity(i);
                 break;
             case 4:
-                i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
-                break;
-            case 5:
-                i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
-                break;
-            case 6:
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String shareBody = "Click on https://play.google.com/store/apps/details?id=com.malav.moodapp to download ME - By Holistree";
-                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Download ME - By Holistree");
+                String shareBody = "Click on https://play.google.com/store/apps/details?id=com.malav.medicinesonway to download MedicinesOnWay";
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Download MedicinesOnWay");
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
                 break;
-            case 7:
+            case 5:
                 i = new Intent(CustomerDashBoardActivity.this, ContactUs.class);
+                startActivity(i);
                 break;
-            case 8:
+            case 6:
                 i = new Intent(CustomerDashBoardActivity.this, ChangePasswordActivity.class);
+                startActivity(i);
                 break;
-            case 9:
+            case 7:
                 SharedPreferences.Editor editor = someData.edit();
                 editor.remove("role");
                 editor.remove("login");
@@ -441,13 +441,9 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
                             }
                         });
                 i = new Intent(CustomerDashBoardActivity.this, LoginActivity.class);
+                startActivity(i);
+                finish();
                 break;
-        }
-        if(position!=6) {
-            startActivity(i);
-        }
-        if (position == 9) {
-            finish();
         }
     }
 
