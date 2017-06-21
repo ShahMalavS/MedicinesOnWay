@@ -388,15 +388,16 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
         Intent i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
         switch(position){
             case 0:
-                i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
-                startActivity(i);
+                /*i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
+                startActivity(i);*/
+                Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
-                i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
+                i = new Intent(CustomerDashBoardActivity.this, MyOrdersActivity.class);
                 startActivity(i);
                 break;
             case 2:
-                i = new Intent(CustomerDashBoardActivity.this, CustomerDashBoardActivity.class);
+                i = new Intent(CustomerDashBoardActivity.this, MyPrescriptionActivity.class);
                 startActivity(i);
                 break;
             case 3:
@@ -406,7 +407,7 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
             case 4:
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String shareBody = "Click on https://play.google.com/store/apps/details?id=com.malav.medicinesonway to download MedicinesOnWay";
+                String shareBody = "Click on https://play.google.com/store/apps/details?id=com.company.medicinesonway to download MedicinesOnWay";
                 sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Download MedicinesOnWay");
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
@@ -470,11 +471,11 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
                     Store store = new Store();
                     store.setStoreId("1");
                     store.setStoreName("Sai Krupa Pharmacy");
-                    store.setPhoneNumber("9033137266");
+                    store.setPhoneNumber("9876543211");
                     store.setAddress("A-12, Sai Complex, Pimple Saudagar, Rahatani, Pune");
                     store.setCloseTime("11:00 PM");
                     store.setOpenTime("08:00 AM");
-                    store.setEmailId("malavshah502@gmail.com");
+                    store.setEmailId("abc@gmail.com");
                     store.setIs24Hours(0);
                     store.setOpenDays(new int[]{1,1,1,1,1,1,1});
                     store.setPinCode("411027");
@@ -483,11 +484,11 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
                     store = new Store();
                     store.setStoreId("2");
                     store.setStoreName("Lotus Pharmacy");
-                    store.setPhoneNumber("9033137266");
+                    store.setPhoneNumber("9876543215");
                     store.setAddress("C-1, Westend Mall, Aundh, Pune");
                     store.setCloseTime("11:00 PM");
                     store.setOpenTime("08:00 AM");
-                    store.setEmailId("malavshah502@gmail.com");
+                    store.setEmailId("xyz@gmail.com");
                     store.setIs24Hours(0);
                     store.setOpenDays(new int[]{1,1,1,1,1,1,1});
                     store.setPinCode("411027");
@@ -496,11 +497,11 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
                     store = new Store();
                     store.setStoreId("3");
                     store.setStoreName("Jahangir Pharmacy");
-                    store.setPhoneNumber("9033137266");
+                    store.setPhoneNumber("8765309876");
                     store.setAddress("14, Anamika Buildings, Aundh, Pune");
                     store.setCloseTime("11:00 PM");
                     store.setOpenTime("08:00 AM");
-                    store.setEmailId("malavshah502@gmail.com");
+                    store.setEmailId("pqr@gmail.com");
                     store.setIs24Hours(0);
                     store.setOpenDays(new int[]{1,1,1,1,1,1,1});
                     store.setPinCode("411027");
@@ -509,11 +510,11 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
                     store = new Store();
                     store.setStoreId("4");
                     store.setStoreName("Apolo Pharmacy");
-                    store.setPhoneNumber("9033137266");
+                    store.setPhoneNumber("9876543098");
                     store.setAddress("11, Satya sai clinic, Kalewadi Phata, Rahatani, Pune");
                     store.setCloseTime("11:00 PM");
                     store.setOpenTime("08:00 AM");
-                    store.setEmailId("malavshah502@gmail.com");
+                    store.setEmailId("def@gmail.com");
                     store.setIs24Hours(0);
                     store.setOpenDays(new int[]{1,1,1,1,1,1,1});
                     store.setPinCode("411027");

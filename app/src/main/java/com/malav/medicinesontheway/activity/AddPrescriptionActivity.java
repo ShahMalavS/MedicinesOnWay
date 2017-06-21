@@ -15,10 +15,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,13 +71,18 @@ public class AddPrescriptionActivity extends AppCompatActivity {
         TextView txtStoreName = (TextView) findViewById(R.id.name);
         txtStoreName.setText(storeName);
 
+        final EditText edtTitle = (EditText) findViewById(R.id.title);
+
         Button btnSubmit = (Button) findViewById(R.id.submit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(AddPrescriptionActivity.this, OrderConfirmedActivity.class);
-                startActivity(i);
-                finish();
+                if(CommonUtils.hasText(edtTitle.getText().toString()) && mImageCaptureUri!=null && CommonUtils.hasText(mImageCaptureUri.toString())){
+                    Intent i = new Intent(AddPrescriptionActivity.this, OrderConfirmedActivity.class);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(AddPrescriptionActivity.this, "Please add prescription and title", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -206,5 +214,27 @@ public class AddPrescriptionActivity extends AppCompatActivity {
         } catch (Exception exc) {
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_blank, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -35,4 +35,6 @@
     <dimen name="dialog_padding_side">24dp</dimen>
     <dimen name="item_offset">5dp</dimen>
     <dimen name="toolbar_placeholder_height">56dp</dimen>
+    <dimen name="text">15dp</dimen>
+    <dimen name="sub_text">10dp</dimen>
 </resources>

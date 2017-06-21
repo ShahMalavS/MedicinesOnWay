@@ -23,7 +23,15 @@ public class Store {
     private int is24Hours;
     private int[] openDays;
     private String pic;
+    private int isHomeDelivery;
 
+    public int getIsHomeDelivery() {
+        return isHomeDelivery;
+    }
+
+    public void setIsHomeDelivery(int isHomeDelivery) {
+        this.isHomeDelivery = isHomeDelivery;
+    }
 
     public String getPic() {
         return pic;

@@ -37,6 +37,7 @@ import com.malav.medicinesontheway.R;
 import com.malav.medicinesontheway.custom_font.MyEditText;
 import com.malav.medicinesontheway.custom_font.MyTextView;
 import com.malav.medicinesontheway.model.User;
+import com.malav.medicinesontheway.utils.AppUtils;
 import com.malav.medicinesontheway.utils.CommonUtils;
 import com.malav.medicinesontheway.utils.Constants;
 import com.malav.medicinesontheway.utils.JSONfunctions;
@@ -110,7 +111,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
             @Override
             public void onClick(View v) {
-                signIn();
+                if(AppUtils.isOnline(LoginActivity.this)) {
+                    signIn();
+                }else{
+                    Toast.makeText(LoginActivity.this, "Connectivity Issues. You are Offline", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -126,9 +131,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         btFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this,
-                        Arrays.asList("user_photos", "email", "user_birthday", "public_profile")
-                );
+                if(AppUtils.isOnline(LoginActivity.this)) {
+                    LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this,
+                            Arrays.asList("user_photos", "email", "user_birthday", "public_profile")
+                    );
+                }else{
+                    Toast.makeText(LoginActivity.this, "Connectivity Issues. You are Offline", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -148,7 +157,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                if(AppUtils.isOnline(LoginActivity.this)) {
+                    attemptLogin();
+                }else {
+                    Toast.makeText(LoginActivity.this, "Connectivity Issues. You are Offline", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

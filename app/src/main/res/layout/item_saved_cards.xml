@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:backgroundTint="@color/lightgrey" />
+
+        <com.malav.medicinesontheway.custom_font.MyTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:text="4543   34**   ****   3376" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_ccv"
+            android:padding="5dp">
+
+            <com.malav.medicinesontheway.custom_font.MyEditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:hint="CVV"
+                android:inputType="number"
+                android:maxLength="3"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="@color/text"
+                android:textColorHint="@color/lightgrey"
+                android:textSize="11dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1.9"
+            android:gravity="right">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:src="@drawable/visa" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
