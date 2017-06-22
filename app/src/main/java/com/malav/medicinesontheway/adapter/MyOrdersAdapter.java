@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.malav.medicinesontheway.R;
 import com.malav.medicinesontheway.activity.AddPrescriptionActivity;
+import com.malav.medicinesontheway.activity.ViewOrderActivity;
 import com.malav.medicinesontheway.model.Store;
 import com.malav.medicinesontheway.utils.CommonUtils;
 
@@ -114,10 +115,10 @@ public class MyOrdersAdapter extends BaseAdapter implements Filterable {
         @Override
         public void onClick(View v) {
 
-            /*Intent i = new Intent(context, AddPrescriptionActivity.class);
+            Intent i = new Intent(context, ViewOrderActivity.class);
             i.putExtra("storeId", id);
             i.putExtra("storeName", name);
-            context.startActivity(i);*/
+            context.startActivity(i);
         }
     }
 

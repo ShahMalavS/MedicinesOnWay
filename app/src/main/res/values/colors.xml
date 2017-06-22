@@ -33,4 +33,8 @@
     <color name="lightgrey">#d1d1d1</color>
     <color name="pink">#EA2164 </color>
     <color name="text">#545454</color>
+    <color name="div">#d5c5a4</color>
+    <color name="textOrder">#32353e</color>
+    <color name="textred">#ca362c</color>
+    <color name="textwhite">#fff</color>
 </resources>

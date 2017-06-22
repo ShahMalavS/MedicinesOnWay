@@ -90,7 +90,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 Intent i = new Intent(LoginActivity.this, LoginActivity.class);
                 startActivity(i);
                 finish();
-                Toast.makeText(this, "Some Error. Please try again..!!", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -261,6 +260,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
+        Log.d(TAG, "handleSignInResult:" + result.toString());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
@@ -275,7 +275,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 new CheckUserInDB(user).execute();
             }
         } else {
-            Toast.makeText(this, "Some Error occoured. Please try again", Toast.LENGTH_SHORT).show();
+
         }
     }
 
