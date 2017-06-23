@@ -9,11 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.malav.medicinesontheway.R;
 import com.malav.medicinesontheway.adapter.MyOrdersAdapter;
+import com.malav.medicinesontheway.custom_font.MyTextView;
 import com.malav.medicinesontheway.model.Address;
 import com.malav.medicinesontheway.model.Order;
 import com.malav.medicinesontheway.model.Store;
@@ -33,6 +35,8 @@ public class ViewOrderActivity extends AppCompatActivity {
 
     private SharedPreferences someData;
     private static String TAG = MyOrdersActivity.class.getSimpleName();
+    private MyTextView txtOrderNumber, txtDate, txtDeliveryMode, txtDeliveryInfo, txtPaymentMode,
+                txtPayNow, txtOrderStatus, txtViewPrescription, txtViewBill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +50,25 @@ public class ViewOrderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("View Order");
 
+        txtOrderNumber = (MyTextView) findViewById(R.id.txtOrderNumber);
+        txtDate = (MyTextView) findViewById(R.id.txtDate);
+        txtDeliveryMode = (MyTextView) findViewById(R.id.txtOrderDeliveryMode);
+        txtDeliveryInfo = (MyTextView) findViewById(R.id.txtOrderDeliveryInfo);
+        txtPaymentMode = (MyTextView) findViewById(R.id.txtPaymentStatus);
+        txtPayNow = (MyTextView) findViewById(R.id.txtPayNow);
+        txtOrderStatus = (MyTextView) findViewById(R.id.txtOrderStatus);
+        txtViewPrescription = (MyTextView) findViewById(R.id.txtViewPrescription);
+        txtViewBill = (MyTextView) findViewById(R.id.txtViewBill);
+
         new FetchOrder().execute();
+
+        txtPayNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ViewOrderActivity.this,PaymentActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 
