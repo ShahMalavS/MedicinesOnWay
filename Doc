@@ -1,0 +1,105 @@
+Medicines on Way...
+
+Types of users
+
+1. Admin:
+      - View List of Pharmacy added
+      - Add/Delete/Update Pharmacy
+      - View List of Medicines added
+      - Add/Delete/Update Medicines
+      - Check payment status by Pharmacy
+      - Remind of payment to Pharmacy
+      
+2. Pharmacy:
+      - Inventory Management
+      - Payment to Admin
+      - View orders from customers
+      - get notified when new order arrives
+      - Accept/Reject Orders
+      - Update order status
+      - Add medicines and generate bill
+      - Add/Edit Delivery charge
+      - Toggle between Delivery yes/no
+      - Add/Edit/Delete offers for customers
+      - Block users
+      
+3. Consumer:
+      - View stores as per the location
+      - Change location
+      - Add prescriptions
+      - Select payment Options and Delivery Options
+      - Make order for medicines
+      - View Offers from Pharmacy
+      - View all My Orders and their status
+      - Cancel Order
+      - Make payment
+      - Notified when order is ready
+      - Add/Edit/Delete reminders for taking medicines or for order cycles
+      - Directly order from the previously added prescriptions
+      
+      
+Flow of App:
+
+1. Consumer Side:
+      - Register and Login (Alternatively also can login via Facebook, Google or Twitter)
+      - View Shops in the vicinity of current Location
+      - Choose a shop or change location to find shop in the vicinity of entered location
+      - Add prescription and give it a name for future use.
+      - Choose Delivery type:
+          - PickUp:
+              - Enter Time for pickUp
+          - Home Delivery:
+              - Enter Name, Address, Landmark, PhoneNumber and preferable time
+      - Choose Payment option:
+          - COD
+          - Online
+      - Clicking on Submit will mark a order and the Pharmacy will be notified.
+      - Consumer can see the order in My Orders Section. By Default the order will be in Submitted Status
+      - My Orders will contains all orders with the following information:
+          - Order Number (This will be required to be provided to pharmacy while taking delivery)
+          - Date of purchase
+          - Payment Mode
+              - Also contains Pay option if order is confirmed and payment mode is Online
+          - Order Status
+              - Submitted
+              - Confirmed
+              - Ready/out for Delivery
+              - Delivered
+      - Once the Pharmacy marks the order as Confirm and Generate Bill, Consumer will be notified nad in case of Online payment, can make Payment with the help of button in My Orders Section
+      - Consumer will get the generated bill via Email
+      - Payment can only be done once the order is confirmed
+      - In case of online Payment, Delivery cannot be done before Payment is done online.
+      - In case of PickUp, the consumer can visit the shop once the Order is in Ready Status.
+      - Pharmacy may verify Id card in case of pickUp Order iwth Order number to verify the Identity
+      - Consumer can go to Reminder section and can add countless reminders about takingmedicines or about next order cycle
+      
+ 2. Pharmacy Side:
+      - Login with the credentials provided by us after their registration
+      - View All Orders
+      - Get Notification if new Order arrives.
+      - Select the Order
+      - To confirm/Accept the order, Pharmacy needs to enter medicines, quantity and MRP in the provided column for all medicines in prescription, That internally will generate Bill for the consumer
+      - Can add Delivery charge in case of Home Delivery
+      - To change status of order, Again select the order and select the status from dropdown and submit.
+      - Inventory Management: Need to discuss
+      
+      
+      
+      
+      
+ Questions:
+ 1. How to handle Cancel Order Scenario?
+      - If Online Payment Refund scenario
+      - Any action if user do multiple orders and cancels it
+      
+ 2. Are we looking for any Pharmacy level offers? Can opt money in exchange
+ 
+ 3. Can Pharmacy include Delivery Charge?
+      - If Yes, Will it be Generic or Pharmacy level
+      
+ 4. Need to Discuss how we will be doing Inventory Management
+ 
+ 5. Is Login Required from the Consumer side for basic functionalities or it required only when the order in made?
+ 
+ 
+ 
