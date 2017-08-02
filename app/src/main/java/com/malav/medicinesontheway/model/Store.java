@@ -6,6 +6,7 @@ package com.malav.medicinesontheway.model;
 
 public class Store {
 
+    private String globalId;
     private String storeId;
     private String storeName;
     private String address;
@@ -24,6 +25,14 @@ public class Store {
     private int[] openDays;
     private String pic;
     private int isHomeDelivery;
+
+    public String getGlobalId() {
+        return globalId;
+    }
+
+    public void setGlobalId(String globalId) {
+        this.globalId = globalId;
+    }
 
     public int getIsHomeDelivery() {
         return isHomeDelivery;

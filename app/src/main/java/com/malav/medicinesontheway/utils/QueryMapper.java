@@ -2,11 +2,11 @@ package com.malav.medicinesontheway.utils;
 
 public class QueryMapper {
 
-    public static String URL_LOGIN = "http://holistree.in/android/mood_app/Login.php";
+    public static String URL_LOGIN = "http://holistree.in/android/ph/Login.php";
 
-    public static String URL_CHECK_EMAIL = "http://holistree.in/android/mood_app/check_email.php";
+    public static String URL_CHECK_EMAIL = "http://holistree.in/android/ph/check_email.php";
 
-    public static String URL_UPDATE_VALUES = "http://holistree.in/android/update_values.php";
+    public static String URL_FETCH_STORES = "http://holistree.in/android/ph/fetch_stores.php";
 
     public static String URL_UPDATE_ALL_VALUES = "http://holistree.in/android/update_all_values.php";
 
@@ -74,7 +74,7 @@ public class QueryMapper {
 
     public static String URL_ADD_PARENTS_TALK = "http://holistree.in/android/Add_Parents_talk.php";
 
-    public static String URL_UPLOAD_AUDIO = "http://holistree.in/android/Upload_Audio.php";
+    public static String URL_UPLOAD_PRESCRIPTION = "http://holistree.in/android/uploadp.php";
 
     public static String URL_UPLOAD_VIDEO = "http://holistree.in/android/Upload_Video.php";
 

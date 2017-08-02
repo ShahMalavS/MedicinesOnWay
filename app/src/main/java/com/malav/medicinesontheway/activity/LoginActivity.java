@@ -367,8 +367,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 success = json.getString("success");
                 if (success.equalsIgnoreCase("1")) {
                     user.setRole(json.getString("user_role"));
-                    user.setUserName(json.getString("user_name"));
-                    user.setProfilePic(json.getString("user_pic"));
+                    user.setUserName(json.getString("name"));
+                    user.setProfilePic(json.getString("profile_pic"));
                     user.setUserId(json.getString("user_id"));
                     user.setEmail(mEmail);
                     return true;
@@ -524,11 +524,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 success = json.getString("success");
                 if (success.equalsIgnoreCase("1")) {
                     user.setRole(json.getString("user_role"));
-                    user.setUserName(json.getString("user_name"));
-                    user.setProfilePic(json.getString("user_pic"));
+                    user.setUserName(json.getString("name"));
+                    user.setProfilePic(json.getString("profile_pic"));
                     user.setUserId(json.getString("user_id"));
-                    user.setPhoneNumber(json.getString("user_phone"));
-                    user.setEmail(json.getString("user_email"));
+                    user.setPhoneNumber(json.getString("phone"));
+                    user.setEmail(json.getString("email_id"));
                     return true;
                 }
             } catch (JSONException e) {

@@ -463,64 +463,34 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
             Log.d(TAG, "doInBackground: l_Id: " + someData.getString("user_id","0"));
 
             try{
-                //JSONObject jsonobject = JSONfunctions.makeHttpRequest(QueryMapper.URL_FETCH_QUESTIONS, "POST", para);
+                JSONObject jsonobject = JSONfunctions.makeHttpRequest(QueryMapper.URL_FETCH_STORES, "POST", para);
                 storeList = new ArrayList<>();
-                //JSONArray jsonarray = jsonobject.getJSONArray("allStores");
-                //for (int i = 0; i < jsonarray.length(); i++)
-                //{
-                    //jsonobject = jsonarray.getJSONObject(i);
+                JSONArray jsonarray = jsonobject.getJSONArray("allStores");
+                for (int i = 0; i < jsonarray.length(); i++)
+                {
+                    jsonobject = jsonarray.getJSONObject(i);
                     Store store = new Store();
-                    store.setStoreId("1");
-                    store.setStoreName("Sai Krupa Pharmacy");
-                    store.setPhoneNumber("9876543211");
-                    store.setAddress("A-12, Sai Complex, Pimple Saudagar, Rahatani, Pune");
-                    store.setCloseTime("11:00 PM");
-                    store.setOpenTime("08:00 AM");
-                    store.setEmailId("abc@gmail.com");
-                    store.setIs24Hours(0);
-                    store.setOpenDays(new int[]{1,1,1,1,1,1,1});
-                    store.setPinCode("411027");
+                    store.setGlobalId(jsonobject.getString("user_id"));
+                    store.setStoreId(jsonobject.getString("medi_id"));
+                    store.setStoreName(jsonobject.getString("store_name"));
+                    store.setPhoneNumber(jsonobject.getString("phone"));
+                    store.setAddress(jsonobject.getString("address"));
+                    store.setCloseTime(jsonobject.getString("close_time"));
+                    store.setOpenTime(jsonobject.getString("open_time"));
+                    store.setEmailId(jsonobject.getString("email_id"));
+                    store.setIs24Hours(jsonobject.getInt("is_24_hours"));
+                    int weekDays[] = new int[7];
+                    weekDays[0] = jsonobject.getInt("sunday");
+                    weekDays[1] = jsonobject.getInt("monday");
+                    weekDays[2] = jsonobject.getInt("tuesday");
+                    weekDays[3] = jsonobject.getInt("wednesday");
+                    weekDays[4] = jsonobject.getInt("thursday");
+                    weekDays[5] = jsonobject.getInt("friday");
+                    weekDays[6] = jsonobject.getInt("saturday");
+                    store.setOpenDays(weekDays);
+                    store.setPinCode(jsonobject.getString("pincode"));
                     storeList.add(store);
-
-                    store = new Store();
-                    store.setStoreId("2");
-                    store.setStoreName("Lotus Pharmacy");
-                    store.setPhoneNumber("9876543215");
-                    store.setAddress("C-1, Westend Mall, Aundh, Pune");
-                    store.setCloseTime("11:00 PM");
-                    store.setOpenTime("08:00 AM");
-                    store.setEmailId("xyz@gmail.com");
-                    store.setIs24Hours(0);
-                    store.setOpenDays(new int[]{1,1,1,1,1,1,1});
-                    store.setPinCode("411027");
-                    storeList.add(store);
-
-                    store = new Store();
-                    store.setStoreId("3");
-                    store.setStoreName("Jahangir Pharmacy");
-                    store.setPhoneNumber("8765309876");
-                    store.setAddress("14, Anamika Buildings, Aundh, Pune");
-                    store.setCloseTime("11:00 PM");
-                    store.setOpenTime("08:00 AM");
-                    store.setEmailId("pqr@gmail.com");
-                    store.setIs24Hours(0);
-                    store.setOpenDays(new int[]{1,1,1,1,1,1,1});
-                    store.setPinCode("411027");
-                    storeList.add(store);
-
-                    store = new Store();
-                    store.setStoreId("4");
-                    store.setStoreName("Apolo Pharmacy");
-                    store.setPhoneNumber("9876543098");
-                    store.setAddress("11, Satya sai clinic, Kalewadi Phata, Rahatani, Pune");
-                    store.setCloseTime("11:00 PM");
-                    store.setOpenTime("08:00 AM");
-                    store.setEmailId("def@gmail.com");
-                    store.setIs24Hours(0);
-                    store.setOpenDays(new int[]{1,1,1,1,1,1,1});
-                    store.setPinCode("411027");
-                    storeList.add(store);
-               // }
+                }
             }catch(Exception e) {
                 e.printStackTrace();
             }
@@ -531,43 +501,6 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
             storeListAdapter = new StoreListAdapter(CustomerDashBoardActivity.this,storeList);
             listStudents.setAdapter(storeListAdapter);
             listStudents.setTextFilterEnabled(true);
-        }
-    }
-
-    private class submitAnswer extends AsyncTask<String, String, String> {
-
-        private ProgressDialog progress;
-
-        @Override
-        protected void onPreExecute()
-        {
-            super.onPreExecute();
-            progress = new ProgressDialog(CustomerDashBoardActivity.this);
-            progress.setMessage("Submitting Answer...");
-            progress.setIndeterminate(false);
-            progress.setCancelable(false);
-            progress.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            List<NameValuePair> para = new ArrayList<>();
-           /* para.add(new BasicNameValuePair("common_L_Id", someData.getString("user_id","")));
-            para.add(new BasicNameValuePair("question_id", question.getQuestionId()));
-            para.add(new BasicNameValuePair("answer", question.getAnswer()));
-
-            try {
-                JSONObject jsonobject = JSONfunctions.makeHttpRequest(QueryMapper.URL_SUBMIT_ANSWER, "POST", para);
-                Log.d("Submitting Answer", jsonobject.toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String file_url) {
-            progress.dismiss();
         }
     }
 
