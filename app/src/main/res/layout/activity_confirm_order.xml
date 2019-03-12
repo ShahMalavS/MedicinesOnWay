@@ -87,6 +87,7 @@
                     android:text="Time: "/>
 
                 <EditText
+                    android:id="@+id/pickup_time"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="75"
@@ -117,6 +118,7 @@
                     android:text="Name: "/>
 
                 <EditText
+                    android:id="@+id/name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="75"
@@ -137,6 +139,7 @@
                     android:text="Address: "/>
 
                 <EditText
+                    android:id="@+id/address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="75"
@@ -157,6 +160,7 @@
                     android:text="Landmark: "/>
 
                 <EditText
+                    android:id="@+id/landmark"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="75"
@@ -177,6 +181,7 @@
                     android:text="Pincode: "/>
 
                 <EditText
+                    android:id="@+id/pincode"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="75"
@@ -197,6 +202,7 @@
                     android:text="Phone: "/>
 
                 <EditText
+                    android:id="@+id/phone_number"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="75"

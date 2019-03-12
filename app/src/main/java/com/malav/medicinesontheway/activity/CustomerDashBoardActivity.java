@@ -1,9 +1,7 @@
 package com.malav.medicinesontheway.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,10 +20,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,12 +37,6 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.malav.medicinesontheway.R;
 import com.malav.medicinesontheway.adapter.StoreListAdapter;
 import com.malav.medicinesontheway.fragment.FragmentDrawer;
@@ -56,7 +45,6 @@ import com.malav.medicinesontheway.utils.AppUtils;
 import com.malav.medicinesontheway.utils.CommonUtils;
 import com.malav.medicinesontheway.utils.Constants;
 import com.malav.medicinesontheway.utils.JSONfunctions;
-import com.malav.medicinesontheway.utils.PlaceJSONParser;
 import com.malav.medicinesontheway.utils.QueryMapper;
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
@@ -65,17 +53,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -87,7 +66,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
  * Created by shahmalav on 26/02/17.
  */
 
-public class CustomerDashBoardActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+public class CustomerDashBoardActivity extends AppCompatActivity{
 
     private SharedPreferences someData;
     private Uri mImageCaptureUri;
@@ -95,14 +74,13 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
     private static final int PICK_FROM_CAMERA = 1;
     private static final int CROP_FROM_CAMERA = 2;
     private static final int PICK_FROM_FILE = 3;
-    private GoogleApiClient mGoogleApiClient;
     private ArrayList<Store> storeList;
     private static String TAG = CustomerDashBoardActivity.class.getSimpleName();
     private String userId;
     private StoreListAdapter storeListAdapter;
-    private AppCompatAutoCompleteTextView atvPlaces;
-    private PlacesTask placesTask;
-    private ParserTask parserTask;
+    //private AppCompatAutoCompleteTextView atvPlaces;
+    //private PlacesTask placesTask;
+    //private ParserTask parserTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,14 +92,14 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+       /* GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+                .build();*/
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!(checkSelfPermission(WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) && !(checkSelfPermission(READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)){
@@ -137,7 +115,7 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
         Log.d(TAG, "onCreateView: " + userId);
         Log.d(TAG, "onCreateView: " + mypic);
 
-        atvPlaces = (AppCompatAutoCompleteTextView) findViewById(R.id.atv_places);
+        /*atvPlaces = (AppCompatAutoCompleteTextView) findViewById(R.id.atv_places);
         atvPlaces.setThreshold(1);
 
         atvPlaces.addTextChangedListener(new TextWatcher() {
@@ -158,7 +136,7 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
             public void afterTextChanged(Editable s) {
                 // TODO Auto-generated method stub
             }
-        });
+        });*/
 
         Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -311,10 +289,10 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
         }
     }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(this, "Errro Logging out.. Please try again", Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+//        Toast.makeText(this, "Errro Logging out.. Please try again", Toast.LENGTH_SHORT).show();
+//    }
 
     private class CustomList extends ArrayAdapter<String> {
 
@@ -436,12 +414,12 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
                 editor.remove("wordJsonArray");
                 editor.apply();
                 editor.commit();
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                        new ResultCallback<Status>() {
-                            @Override
-                            public void onResult(Status status) {
-                            }
-                        });
+//                Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+//                        new ResultCallback<Status>() {
+//                            @Override
+//                            public void onResult(Status status) {
+//                            }
+//                        });
                 i = new Intent(CustomerDashBoardActivity.this, LoginActivity.class);
                 startActivity(i);
                 finish();
@@ -504,7 +482,7 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
         }
     }
 
-    /** A method to download json data from url */
+    /** A method to download json data from url *//*
     private String downloadUrl(String strUrl) throws IOException{
         String data = "";
         InputStream iStream = null;
@@ -598,7 +576,7 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
             parserTask.execute(result);
         }
     }
-    /** A class to parse the Google Places in JSON format */
+    *//** A class to parse the Google Places in JSON format *//*
     private class ParserTask extends AsyncTask<String, Integer, List<HashMap<String,String>>>{
 
         JSONObject jObject;
@@ -634,7 +612,7 @@ public class CustomerDashBoardActivity extends AppCompatActivity implements Goog
             // Setting the adapter
             atvPlaces.setAdapter(adapter);
         }
-    }
+    }*/
 
 }
 

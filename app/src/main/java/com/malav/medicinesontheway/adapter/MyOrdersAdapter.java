@@ -12,13 +12,9 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 import com.malav.medicinesontheway.R;
-import com.malav.medicinesontheway.activity.AddPrescriptionActivity;
 import com.malav.medicinesontheway.activity.ViewOrderActivity;
-import com.malav.medicinesontheway.model.Store;
-import com.malav.medicinesontheway.utils.CommonUtils;
+import com.malav.medicinesontheway.model.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +27,14 @@ public class MyOrdersAdapter extends BaseAdapter implements Filterable {
 
     private Context context;
     private LayoutInflater inflater;
-    private ArrayList<Store> storeList, filteredList;
+    private ArrayList<Order> orderList, filteredList;
     private String TAG = "StoreListAdapter";
     private ItemFilter mFilter = new ItemFilter();
 
-    public MyOrdersAdapter(Context context, ArrayList<Store> storeList) {
+    public MyOrdersAdapter(Context context, ArrayList<Order> orderList) {
         this.context = context;
-        this.storeList = storeList;
-        this.filteredList = storeList;
+        this.orderList = orderList;
+        this.filteredList = orderList;
     }
 
     @Override
@@ -67,7 +63,7 @@ public class MyOrdersAdapter extends BaseAdapter implements Filterable {
             convertView = inflater.inflate(R.layout.item_store_list, null);
         }
 
-        Store store = filteredList.get(position);
+        Order order = filteredList.get(position);
 
         TextView name = (TextView) convertView.findViewById(R.id.name);
         TextView address = (TextView) convertView.findViewById(R.id.address);
@@ -75,22 +71,10 @@ public class MyOrdersAdapter extends BaseAdapter implements Filterable {
 
         ImageView profilePic = (ImageView) convertView.findViewById(R.id.profilePic);
 
-        name.setText(store.getStoreName());
-        address.setText(store.getAddress());
+        name.setText(order.getStoreName());
+        address.setText(order.getStoreAddress());
 
-        if(CommonUtils.isNotNull(store.getPic())) {
-            Log.d(TAG, "getView: " + store.getPic());
-            //Load image via Glide
-            Glide.clear(profilePic);
-            if(CommonUtils.isNotNull(store.getPic())){
-                profilePic.setVisibility(View.VISIBLE);
-                Glide.with(context).load(store.getPic()).crossFade(500).into(profilePic);
-            }
-        }else{
-            profilePic.setImageResource(R.drawable.ic_person);
-        }
-
-        ll.setOnClickListener(new MyOnClickListener(context,position,store.getStoreId(),store.getStoreName()));
+        ll.setOnClickListener(new MyOnClickListener(context,position,order.getOrderId(),order.getStoreName()));
 
         return convertView;
     }
@@ -116,7 +100,7 @@ public class MyOrdersAdapter extends BaseAdapter implements Filterable {
         public void onClick(View v) {
 
             Intent i = new Intent(context, ViewOrderActivity.class);
-            i.putExtra("storeId", id);
+            i.putExtra("orderId", id);
             i.putExtra("storeName", name);
             context.startActivity(i);
         }
@@ -130,15 +114,15 @@ public class MyOrdersAdapter extends BaseAdapter implements Filterable {
 
             FilterResults results = new FilterResults();
 
-            final List<Store> list = storeList;
+            final List<Order> list = orderList;
 
             int count = list.size();
-            final ArrayList<Store> nlist = new ArrayList<>(count);
+            final ArrayList<Order> nlist = new ArrayList<>(count);
 
             String filterableString ;
 
             for (int i = 0; i < count; i++) {
-                Store filterableHash = list.get(i);
+                Order filterableHash = list.get(i);
                 filterableString = filterableHash.getStoreName();
                 if (filterableString.toLowerCase().contains(filterString)) {
                     nlist.add(filterableHash);
@@ -154,7 +138,7 @@ public class MyOrdersAdapter extends BaseAdapter implements Filterable {
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filteredList = (ArrayList<Store>) results.values;
+            filteredList = (ArrayList<Order>) results.values;
             notifyDataSetChanged();
         }
 

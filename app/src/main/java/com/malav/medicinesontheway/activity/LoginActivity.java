@@ -17,22 +17,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.malav.medicinesontheway.R;
 import com.malav.medicinesontheway.custom_font.MyEditText;
 import com.malav.medicinesontheway.custom_font.MyTextView;
@@ -55,14 +39,12 @@ import java.util.List;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+public class LoginActivity extends AppCompatActivity{
 
     private static final String TAG = LoginActivity.class.getSimpleName();
-    private GoogleApiClient mGoogleApiClient;
     private MyEditText mEmailView, mPasswordView;
     private MaterialDialog dialogForgotPass;
     SharedPreferences someData;
-    private CallbackManager callbackManager;
     private static final int RC_SIGN_IN = 7;
     private static final int REQUEST_READ_EXTERNAL_STORAGE = 2;
 
@@ -74,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         someData = getSharedPreferences(Constants.filename, 0);
 
         if (someData.contains("login") && someData.getString("login", "").equalsIgnoreCase("true")) {
-            if (someData.getString("role", "").equalsIgnoreCase("U")) {
+            if (someData.getString("role", "").equalsIgnoreCase("C")) {
                 Intent i = new Intent(LoginActivity.this, CustomerDashBoardActivity.class);
                 startActivity(i);
                 finish();
@@ -92,16 +74,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 finish();
             }
         }
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
         ImageView btFacebook = (ImageView) findViewById(R.id.btfb);
         ImageView btGmail = (ImageView) findViewById(R.id.btgp);
         ImageView btTwitter = (ImageView) findViewById(R.id.bttw);
@@ -111,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onClick(View v) {
                 if(AppUtils.isOnline(LoginActivity.this)) {
-                    signIn();
+                    //signIn();
                 }else{
                     Toast.makeText(LoginActivity.this, "Connectivity Issues. You are Offline", Toast.LENGTH_SHORT).show();
                 }
@@ -131,9 +103,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onClick(View view) {
                 if(AppUtils.isOnline(LoginActivity.this)) {
-                    LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this,
+                    /*LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this,
                             Arrays.asList("user_photos", "email", "user_birthday", "public_profile")
-                    );
+                    );*/
                 }else{
                     Toast.makeText(LoginActivity.this, "Connectivity Issues. You are Offline", Toast.LENGTH_SHORT).show();
                 }
@@ -184,7 +156,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
 
-        callbackManager = CallbackManager.Factory.create();
+        /*callbackManager = CallbackManager.Factory.create();
         if (AccessToken.getCurrentAccessToken() != null) {
             LoginManager.getInstance().logOut();
         }
@@ -249,16 +221,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     }
                 }
         );
-
+*/
 
     }
 
-    private void signIn() {
+   /* private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
+    }*/
 
-    private void handleSignInResult(GoogleSignInResult result) {
+    /*private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         Log.d(TAG, "handleSignInResult:" + result.toString());
         if (result.isSuccess()) {
@@ -277,7 +249,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         } else {
 
         }
-    }
+    }*/
 
     /**
      * Callback received when a permissions request has been completed.
@@ -392,7 +364,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 editor.apply();
                 editor.commit();
                 Intent i = null;
-                if (CommonUtils.equalIgnoreCase(user.getRole(), "U")) {
+                if (CommonUtils.equalIgnoreCase(user.getRole(), "C")) {
                     i = new Intent(LoginActivity.this, CustomerDashBoardActivity.class);
                 } else if(CommonUtils.equalIgnoreCase(user.getRole(), "P")){
                     i = new Intent(LoginActivity.this, CustomerDashBoardActivity.class);
@@ -479,16 +451,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         return true;
     }
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }else {
-            callbackManager.onActivityResult(requestCode, resultCode, data);
+            //callbackManager.onActivityResult(requestCode, resultCode, data);
         }
-    }
+    }*/
 
     private class CheckUserInDB extends AsyncTask<Void, Void, Boolean> {
 
@@ -587,7 +559,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    @Override
+    /*@Override
     public void onStart() {
         super.onStart();
 
@@ -604,10 +576,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 }
             });
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
-    }
+    }*/
 }

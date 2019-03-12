@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.malav.medicinesontheway.R;
 import com.malav.medicinesontheway.activity.AddPrescriptionActivity;
+import com.malav.medicinesontheway.model.Prescription;
 import com.malav.medicinesontheway.model.Store;
 import com.malav.medicinesontheway.utils.CommonUtils;
 
@@ -30,14 +31,14 @@ public class MyPrescriptionAdapter extends BaseAdapter implements Filterable {
 
     private Context context;
     private LayoutInflater inflater;
-    private ArrayList<Store> storeList, filteredList;
+    private ArrayList<Prescription> prescriptionList, filteredList;
     private String TAG = "StoreListAdapter";
     private ItemFilter mFilter = new ItemFilter();
 
-    public MyPrescriptionAdapter(Context context, ArrayList<Store> storeList) {
+    public MyPrescriptionAdapter(Context context, ArrayList<Prescription> prescriptionList) {
         this.context = context;
-        this.storeList = storeList;
-        this.filteredList = storeList;
+        this.prescriptionList = prescriptionList;
+        this.filteredList = prescriptionList;
     }
 
     @Override
@@ -66,28 +67,28 @@ public class MyPrescriptionAdapter extends BaseAdapter implements Filterable {
             convertView = inflater.inflate(R.layout.item_prescription_list, null);
         }
 
-        Store store = filteredList.get(position);
+        Prescription prescription = filteredList.get(position);
 
         TextView name = (TextView) convertView.findViewById(R.id.name);
         LinearLayout ll = (LinearLayout) convertView.findViewById(R.id.ll);
 
         ImageView profilePic = (ImageView) convertView.findViewById(R.id.profilePic);
 
-        name.setText(store.getStoreName());
+        name.setText(prescription.getPres_name());
 
-        if(CommonUtils.isNotNull(store.getPic())) {
-            Log.d(TAG, "getView: " + store.getPic());
+        if(CommonUtils.isNotNull(prescription.getPres_url())) {
+            Log.d(TAG, "getView: " + prescription.getPres_url());
             //Load image via Glide
             Glide.clear(profilePic);
-            if(CommonUtils.isNotNull(store.getPic())){
+            if(CommonUtils.isNotNull(prescription.getPres_url())){
                 profilePic.setVisibility(View.VISIBLE);
-                Glide.with(context).load(store.getPic()).crossFade(500).into(profilePic);
+                Glide.with(context).load(prescription.getPres_url()).crossFade(500).into(profilePic);
             }
         }else{
             profilePic.setImageResource(R.drawable.ic_person);
         }
 
-        ll.setOnClickListener(new MyOnClickListener(context,position,store.getStoreId(),store.getStoreName()));
+        ll.setOnClickListener(new MyOnClickListener(context,position,prescription.getPres_id(),prescription.getPres_url()));
 
         return convertView;
     }
@@ -127,16 +128,16 @@ public class MyPrescriptionAdapter extends BaseAdapter implements Filterable {
 
             FilterResults results = new FilterResults();
 
-            final List<Store> list = storeList;
+            final List<Prescription> list = prescriptionList;
 
             int count = list.size();
-            final ArrayList<Store> nlist = new ArrayList<>(count);
+            final ArrayList<Prescription> nlist = new ArrayList<>(count);
 
             String filterableString ;
 
             for (int i = 0; i < count; i++) {
-                Store filterableHash = list.get(i);
-                filterableString = filterableHash.getStoreName();
+                Prescription filterableHash = list.get(i);
+                filterableString = filterableHash.getPres_name();
                 if (filterableString.toLowerCase().contains(filterString)) {
                     nlist.add(filterableHash);
                 }
@@ -151,7 +152,7 @@ public class MyPrescriptionAdapter extends BaseAdapter implements Filterable {
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filteredList = (ArrayList<Store>) results.values;
+            filteredList = (ArrayList<Prescription>) results.values;
             notifyDataSetChanged();
         }
 

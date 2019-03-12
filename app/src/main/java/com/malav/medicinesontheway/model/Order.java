@@ -24,6 +24,78 @@ public class Order {
     private int isOrderExecuted;
     private int isOrderComplete;
     private int amount;
+    private String pickUpTime;
+    private String pincode;
+    private String landmark;
+    private String customerName;
+    private String stringAddress;
+    private String prescriptionId;
+    private String storeAddress;
+    private String prescriptionURL;
+
+    public String getPrescriptionURL() {
+        return prescriptionURL;
+    }
+
+    public void setPrescriptionURL(String prescriptionURL) {
+        this.prescriptionURL = prescriptionURL;
+    }
+
+    public String getStoreAddress() {
+        return storeAddress;
+    }
+
+    public void setStoreAddress(String storeAddress) {
+        this.storeAddress = storeAddress;
+    }
+
+    public String getPrescriptionId() {
+        return prescriptionId;
+    }
+
+    public void setPrescriptionId(String prescriptionId) {
+        this.prescriptionId = prescriptionId;
+    }
+
+    public String getStringAddress() {
+        return stringAddress;
+    }
+
+    public void setStringAddress(String stringAddress) {
+        this.stringAddress = stringAddress;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getPickUpTime() {
+        return pickUpTime;
+    }
+
+    public void setPickUpTime(String pickUpTime) {
+        this.pickUpTime = pickUpTime;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
+    public String getLandmark() {
+        return landmark;
+    }
+
+    public void setLandmark(String landmark) {
+        this.landmark = landmark;
+    }
 
     public int getAmount() {
         return amount;

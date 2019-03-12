@@ -44,6 +44,9 @@ import com.malav.medicinesontheway.utils.QueryMapper;
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Hashtable;
@@ -68,6 +71,7 @@ public class AddPrescriptionActivity extends AppCompatActivity {
     private String KEY_IMAGE = "image";
     private String KEY_NAME = "name";
     private EditText edtTitle;
+    private String storeId="0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,7 @@ public class AddPrescriptionActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Add Prescription");
+        storeId = getIntent().getExtras().getString("storeId");
 
         String storeName = getIntent().getExtras().getString("storeName");
         String storeId = getIntent().getExtras().getString("storeId");
@@ -205,8 +210,21 @@ public class AddPrescriptionActivity extends AppCompatActivity {
                     public void onResponse(String s) {
                         //Disimissing the progress dialog
                         loading.dismiss();
+                        Log.d(TAG, "onResponse: "+s);
                         //Showing toast message of the response
                         Toast.makeText(AddPrescriptionActivity.this, s , Toast.LENGTH_LONG).show();
+                        JSONObject json = null;
+                        String pres_id="0";
+                        try {
+                            json = new JSONObject(s);
+                            pres_id = json.getString("pres_id");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Intent i = new Intent(AddPrescriptionActivity.this, OrderConfirmedActivity.class);
+                        i.putExtra("pres_id", pres_id);
+                        i.putExtra("storeId", storeId);
+                        startActivity(i);
                     }
                 },
                 new Response.ErrorListener() {
@@ -214,6 +232,7 @@ public class AddPrescriptionActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError volleyError) {
                         //Dismissing the progress dialog
                         loading.dismiss();
+                        Log.e(TAG, "onErrorResponse: ", volleyError);
 
                         //Showing toast
                         Toast.makeText(AddPrescriptionActivity.this, volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
@@ -233,7 +252,7 @@ public class AddPrescriptionActivity extends AppCompatActivity {
                 //Adding parameters
                 params.put(KEY_IMAGE, image);
                 params.put(KEY_NAME, name);
-                params.put("cust_id", "1");
+                params.put("cust_id", someData.getString("user_id","0"));
 
                 //returning parameters
                 return params;

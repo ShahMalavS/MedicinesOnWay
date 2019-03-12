@@ -18,13 +18,13 @@ public class QueryMapper {
     
     public static String URL_ADD_NEW_EVENT_TYPE = "http://holistree.in/android/mood_app/add_new_event_type.php";
 
-    public static String URL_EDIT_EVENT = "http://holistree.in/android/edit_event.php";
+    public static String URL_MAKE_ORDER = "http://holistree.in/android/ph/make_order.php";
 
-    public static String URL_EDIT_STATUS = "http://holistree.in/android/edit_status.php";
+    public static String URL_FETCH_MY_ORDERS = "http://holistree.in/android/ph/fetch_my_orders.php";
 
-    public static String URL_DELETE_EVENT = "http://holistree.in/android/delete_event.php";
+    public static String URL_FETCH_MY_PRESCRIPTIONS = "http://holistree.in/android/ph/fetch_my_prescriptions.php";
 
-    public static String URL_DELETE_STATUS = "http://holistree.in/android/delete_status.php";
+    public static String URL_FETCH_PARTICULAR_ORDER = "http://holistree.in/android/ph/fetch_particular_order.php";
     
     public static String URL_ALL_DATES = "http://holistree.in/android/All_Appts_Dates.php";
     
@@ -74,7 +74,7 @@ public class QueryMapper {
 
     public static String URL_ADD_PARENTS_TALK = "http://holistree.in/android/Add_Parents_talk.php";
 
-    public static String URL_UPLOAD_PRESCRIPTION = "http://holistree.in/android/uploadp.php";
+    public static String URL_UPLOAD_PRESCRIPTION = "http://holistree.in/android/ph/upload_prescription.php";
 
     public static String URL_UPLOAD_VIDEO = "http://holistree.in/android/Upload_Video.php";
 

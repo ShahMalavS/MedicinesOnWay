@@ -76,8 +76,8 @@
 
             <ImageView
                 android:id="@+id/prescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="400dp"
+                android:layout_height="400dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
@@ -85,7 +85,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:src="@android:drawable/ic_menu_add"
-                android:minHeight="200dp"/>
+                android:scaleType="fitXY"/>
 
             <EditText
                 android:id="@+id/title"

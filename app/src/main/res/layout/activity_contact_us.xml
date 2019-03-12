@@ -102,7 +102,7 @@
                     android:layout_weight="60"
                     android:clickable="true"
                     android:text="http://www.holistree.in"
-                    android:textColor="@color/com_facebook_button_send_background_color_pressed" />
+                    android:textColor="@color/md_material_blue_600" />
 
                 <ImageView
                     android:layout_width="35dp"
@@ -132,7 +132,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="60"
                     android:text="http://www.holistree.in/blog"
-                    android:textColor="@color/com_facebook_button_send_background_color_pressed" />
+                    android:textColor="@color/md_material_blue_600" />
 
                 <ImageView
                     android:layout_width="35dp"

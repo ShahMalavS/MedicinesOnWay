@@ -15,11 +15,16 @@ import android.widget.ListView;
 import com.malav.medicinesontheway.R;
 import com.malav.medicinesontheway.adapter.MyOrdersAdapter;
 import com.malav.medicinesontheway.adapter.MyPrescriptionAdapter;
+import com.malav.medicinesontheway.model.Prescription;
 import com.malav.medicinesontheway.model.Store;
 import com.malav.medicinesontheway.utils.Constants;
+import com.malav.medicinesontheway.utils.JSONfunctions;
+import com.malav.medicinesontheway.utils.QueryMapper;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +36,8 @@ import java.util.List;
 public class MyPrescriptionActivity extends AppCompatActivity {
 
     private SharedPreferences someData;
-    private ArrayList<Store> storeList;
-    private static String TAG = MyOrdersActivity.class.getSimpleName();
+    private ArrayList<Prescription> prescriptionList;
+    private static String TAG = MyPrescriptionActivity.class.getSimpleName();
     private String userId;
     private MyPrescriptionAdapter myPrescriptionAdapter;
 
@@ -62,68 +67,25 @@ public class MyPrescriptionActivity extends AppCompatActivity {
 
             List<NameValuePair> para = new ArrayList<>();
 
-            para.add(new BasicNameValuePair("l_Id", someData.getString("user_id","0")));
+            para.add(new BasicNameValuePair("user_id", someData.getString("user_id","0")));
             Log.d(TAG, "doInBackground: l_Id: " + someData.getString("user_id","0"));
 
             try{
-                //JSONObject jsonobject = JSONfunctions.makeHttpRequest(QueryMapper.URL_FETCH_QUESTIONS, "POST", para);
-                storeList = new ArrayList<>();
-                //JSONArray jsonarray = jsonobject.getJSONArray("allStores");
-                //for (int i = 0; i < jsonarray.length(); i++)
-                //{
-                //jsonobject = jsonarray.getJSONObject(i);
-                Store store = new Store();
-                store.setStoreId("1");
-                store.setStoreName("Title 1");
-                store.setPhoneNumber("9876543211");
-                store.setAddress("Sai Krupa Pharmacy");
-                store.setCloseTime("11:00 PM");
-                store.setOpenTime("08:00 AM");
-                store.setEmailId("abc@gmail.com");
-                store.setIs24Hours(0);
-                store.setOpenDays(new int[]{1,1,1,1,1,1,1});
-                store.setPinCode("411027");
-                storeList.add(store);
+                JSONObject jsonobject = JSONfunctions.makeHttpRequest(QueryMapper.URL_FETCH_MY_PRESCRIPTIONS, "POST", para);
+                prescriptionList = new ArrayList<>();
+                JSONArray jsonarray = jsonobject.getJSONArray("myPrescriptions");
+                for (int i = 0; i < jsonarray.length(); i++)
+                {
+                    jsonobject = jsonarray.getJSONObject(i);
 
-                store = new Store();
-                store.setStoreId("2");
-                store.setStoreName("Dad's Prescription");
-                store.setPhoneNumber("9876543215");
-                store.setAddress("Lotus Pharmacy");
-                store.setCloseTime("11:00 PM");
-                store.setOpenTime("08:00 AM");
-                store.setEmailId("xyz@gmail.com");
-                store.setIs24Hours(0);
-                store.setOpenDays(new int[]{1,1,1,1,1,1,1});
-                store.setPinCode("411027");
-                storeList.add(store);
+                    Prescription prescription= new Prescription();
+                    prescription.setUser_id(jsonobject.getString("user_id"));
+                    prescription.setPres_id(jsonobject.getString("pres_id"));
+                    prescription.setPres_url(jsonobject.getString("pres_url"));
+                    prescription.setPres_name(jsonobject.getString("pres_name"));
 
-                store = new Store();
-                store.setStoreId("3");
-                store.setStoreName("Mom's Prescription");
-                store.setPhoneNumber("8765309876");
-                store.setAddress("Sai Krupa Pharmacy");
-                store.setCloseTime("11:00 PM");
-                store.setOpenTime("08:00 AM");
-                store.setEmailId("pqr@gmail.com");
-                store.setIs24Hours(0);
-                store.setOpenDays(new int[]{1,1,1,1,1,1,1});
-                store.setPinCode("411027");
-                storeList.add(store);
-
-                store = new Store();
-                store.setStoreId("4");
-                store.setStoreName("Dr. Chawla's Prescription");
-                store.setPhoneNumber("9876543098");
-                store.setAddress("Sai Krupa Pharmacy");
-                store.setCloseTime("11:00 PM");
-                store.setOpenTime("08:00 AM");
-                store.setEmailId("def@gmail.com");
-                store.setIs24Hours(0);
-                store.setOpenDays(new int[]{1,1,1,1,1,1,1});
-                store.setPinCode("411027");
-                storeList.add(store);
-                // }
+                    prescriptionList.add(prescription);
+                 }
             }catch(Exception e) {
                 e.printStackTrace();
             }
@@ -131,7 +93,7 @@ public class MyPrescriptionActivity extends AppCompatActivity {
         }
         protected void onPostExecute(String file_url) {
             ListView listStudents = (ListView) findViewById(R.id.listView);
-            myPrescriptionAdapter = new MyPrescriptionAdapter(MyPrescriptionActivity.this,storeList);
+            myPrescriptionAdapter = new MyPrescriptionAdapter(MyPrescriptionActivity.this,prescriptionList);
             listStudents.setAdapter(myPrescriptionAdapter);
             listStudents.setTextFilterEnabled(true);
         }

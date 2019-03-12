@@ -2,9 +2,6 @@ package com.malav.medicinesontheway.controller;
 
 import android.app.Application;
 
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-
 public class AppController extends Application {
 
 	public static final String TAG = AppController.class.getSimpleName();
@@ -15,8 +12,8 @@ public class AppController extends Application {
 	public void onCreate() {
 		super.onCreate();
 		mInstance = this;
-		FacebookSdk.sdkInitialize(getApplicationContext());
-		AppEventsLogger.activateApp(this);
+//		FacebookSdk.sdkInitialize(getApplicationContext());
+//		AppEventsLogger.activateApp(this);
 	}
 
 	public static synchronized AppController getInstance() {
